@@ -4,6 +4,7 @@
 	let ready: boolean = false;
 	onMount(() => (ready = true));
 
+	import "../app.postcss";
 </script>
 
 <div class="dragbar" />

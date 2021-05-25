@@ -3,10 +3,14 @@ import adapter from '@sveltejs/adapter-static';
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
+	preprocess: [
+		sveltePreprocess({
+			postcss: true
+		}),
+	],
 	kit: {
 		adapter: adapter({}),
 		target: '#svelte',
 	},
-	preprocess: sveltePreprocess(),
 };
 export default config;

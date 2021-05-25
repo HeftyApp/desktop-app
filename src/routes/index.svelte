@@ -7,12 +7,12 @@
 <main>
 	<Logo />
 
-	<h1>Hello Electron!</h1>
+	<h1 class="bg-red-400">Hello Electron!</h1>
 
 	<Counter id="0" />
 </main>
 
-<style>
+<style style lang="postcss">
 	:root {
 		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 			Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -25,9 +25,9 @@
 
 	main {
 		padding: 2em 1em 1em 1em;
-		text-align: center;
+		@apply text-center;
 		animation: fade 1s;
-		margin: 0 auto;
+		@apply mx-auto;
 	}
 
 	@keyframes fade {
