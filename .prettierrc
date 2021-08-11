@@ -1,0 +1,7 @@
+{
+  "svelteSortOrder": "styles-markup-options-scripts",
+  "svelteStrictMode": true,
+  "svelteBracketNewLine": false,
+  "svelteAllowShorthand": false,
+  "quoteProps": "preserve"
+}
