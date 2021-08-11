@@ -1,10 +1,13 @@
 <script>
+  import "../app.postcss";
   import "../app.scss";
   import SideBar from "$lib/SideBar.svelte";
 </script>
 
-<SideBar />
+<SideBar>
 
 <div class="main">
-  <slot />
-</div>
+  <slot>
+</slot></div>
+</SideBar>
+<slot></slot>

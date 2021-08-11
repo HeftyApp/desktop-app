@@ -16,5 +16,7 @@ export default {
     }
   },
 
-  preprocess: preprocess(),
+  preprocess: [preprocess({
+    "postcss": true
+  })],
 };
