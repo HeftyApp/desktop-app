@@ -1,25 +1,10 @@
-<script lang="ts">
-	import { onMount } from 'svelte';
-
-	let ready: boolean = false;
-	onMount(() => (ready = true));
-
-	import "../app.postcss";
+<script>
+  import "../app.scss";
+  import SideBar from "$lib/SideBar.svelte";
 </script>
 
-<div class="dragbar" />
+<SideBar />
 
-{#if ready}
-	<slot />
-{/if}
-
-<style>
-	.dragbar {
-		-webkit-app-region: drag;
-		position: absolute;
-		z-index: 100;
-		height: 40px;
-		width: 100%;
-	}
-
-</style>
+<div class="main">
+  <slot />
+</div>

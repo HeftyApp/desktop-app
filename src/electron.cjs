@@ -1,96 +1,50 @@
-const windowStateManager = require('electron-window-state');
-const contextMenu = require('electron-context-menu');
-const { app, BrowserWindow } = require('electron');
-const serve = require('electron-serve');
+const {app, ipcMain, BrowserWindow} = require("electron");
+const serve = require("electron-serve");
+const ws = require("electron-window-state");
+try { require("electron-reloader")(module); } catch {}
 
-try {
-	require('electron-reloader')(module);
-} catch (e) {
-	console.error(e);
-}
-
-const serveURL = serve({ directory: "." });
+const loadURL = serve({directory: "."});
 const port = process.env.PORT || 3000;
-const dev = !app.isPackaged;
-let mainWindow;
-
-function createWindow() {
-	let windowState = windowStateManager({
-		defaultWidth: 800,
-		defaultHeight: 600,
-	});
-	
-	const mainWindow = new BrowserWindow({
-		backgroundColor: 'whitesmoke',
-		titleBarStyle: 'hidden',
-		autoHideMenuBar: true,
-		trafficLightPosition: {
-			x: 17,
-			y: 32,
-		},
-		minHeight: 450,
-		minWidth: 500,
-		webPreferences: {
-			enableRemoteModule: true,
-			contextIsolation: true,
-			nodeIntegration: true,
-			spellcheck: false,
-			devTools: dev,
-		},
-		x: windowState.x,
-		y: windowState.y,
-		width: windowState.width,
-		height: windowState.height,
-	});
-
-	windowState.manage(mainWindow);
-
-	mainWindow.once('ready-to-show', () => {
-		mainWindow.show();
-		mainWindow.focus();
-	});
-
-	mainWindow.on('close', () => {
-		windowState.saveState(mainWindow);
-	});
-
-	return mainWindow;
-}
-
-contextMenu({
-	showLookUpSelection: false,
-	showSearchWithGoogle: false,
-	showCopyImage: false,
-	prepend: (defaultActions, params, browserWindow) => [
-		{
-			label: 'Make App 💻',
-		},
-	],
-});
+const isdev = !app.isPackaged || (process.env.NODE_ENV == "development");
+let mainwindow;
 
 function loadVite(port) {
-	mainWindow.loadURL(`http://localhost:${port}`).catch((e) => {
-		console.log('Error loading URL, retrying', e);
-		setTimeout(() => {
-			loadVite(port);
-		}, 200);
-	});
+  mainwindow.loadURL(`http://127.0.0.1:${port}`).catch((err) => {
+    setTimeout(() => { loadVite(port); }, 200);
+  });
 }
 
 function createMainWindow() {
-	mainWindow = createWindow();
-	mainWindow.once('close', () => { mainWindow = null });
+  let mws = ws({
+    defaultWidth: 1000,
+    defaultHeight: 800
+  });
 
-	if (dev) loadVite(port);
-	else serveURL(mainWindow);
+  mainwindow = new BrowserWindow({
+    x: mws.x,
+    y: mws.y,
+    width: mws.width,
+    height: mws.height,
+
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      devTools: isdev
+    }
+  });
+
+  mainwindow.once("close", () => { mainwindow = null; });
+
+  if(!isdev) mainwindow.removeMenu();
+  else mainwindow.webContents.openDevTools();
+
+  mws.manage(mainwindow);
+
+  if(isdev) loadVite(port);
+  else loadURL(mainwindow);
 }
 
-app.once('ready', createMainWindow);
-app.on('activate', () => {
-	if (!mainWindow) {
-		createMainWindow();
-	}
-});
-app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') app.quit();
-});
+app.once("ready", createMainWindow);
+app.on("activate", () => { if(!mainwindow) createMainWindow(); });
+app.on("window-all-closed", () => { if(process.platform !== "darwin") app.quit(); });
+

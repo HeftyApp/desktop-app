@@ -1,30 +1,41 @@
-<p align="center">
-  <img src="static/sveltekit-electron.svg" />
-</p>
-
-# Sveltekit + Electron
-
-Minimal [Sveltekit](https://github.com/sveltejs/kit#readme) + [Electron](https://www.electronjs.org/) starter template.
-
-<br />
-
-## Getting Started
-> *Feel free to substitute `npm` with `pnpm` or `yarn`.
-
-|         |                                             |
-| ------- | ------------------------------------------- |
-| Clone   | · `npx degit fractalhq/sveltekit-electron ` |
-| Install | · `npm install`                             |
-| Develop | · `npm run dev`                             |
-| Build   | · `npm run build`                           |
-
-
-<br />
+# SvelteKit + Electron
 
 <p align="center">
-  <img src="screenshot.png" />
+  <img src="https://github.com/Dax89/electron-sveltekit/blob/master/icon.png" width="256">
+</p>
+<p align="center">
+  A minimal project template for Electron and SvelteKit configured with <a href="https://www.npmjs.com/package/@sveltejs/adapter-static">adapter-static</a>.
 </p>
 
-## Recommended IDE Setup
+## Screenshot 
+![Screenshot](https://github.com/Dax89/electron-sveltekit/blob/master/screenshot.png)
 
-[VSCode](https://code.visualstudio.com/) + [Svelte for VSCode](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)
+## Installation
+
+```
+npx degit Dax89/electron-sveltekit
+```
+
+## Commands
+- `npm run dev`: Runs SvelteKit in dev mode
+- `npm run start`: Runs SvelteKit in production mode
+- `npm run electron`: Runs SvelteKit with electron in dev mode
+- `npm run build`: Runs SvelteKit compiler
+- `npm run dev:package`: Creates an Electron package (you can inspect the contents)
+- `npm run package`: Creates a distributable Electron package
+
+## Bootstrap 5 and FontAwesome support
+
+Download the template and install the dependencies:
+
+```
+npx degit Dax89/electron-sveltekit
+npm install --save bootstrap@next @fortawesome/fontawesome-free
+```
+
+Add these lines in `src/app.scss`:
+
+```
+@import "bootstrap/scss/bootstrap";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+```
