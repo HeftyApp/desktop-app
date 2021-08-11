@@ -1,3 +1,7 @@
+<button class="button" on:click="{increment}">
+  Clicks: {count}
+</button>
+
 <script>
   let count = 0;
 
@@ -5,7 +9,3 @@
     count += 1;
   };
 </script>
-
-<button class="button" on:click={increment}>
-  Clicks: {count}
-</button>

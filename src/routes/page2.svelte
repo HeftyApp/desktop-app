@@ -10,4 +10,3 @@
   <a class="button" style="margin-left: 2px;" href="/page1">Page 1</a>
   <a class="button" style="margin-left: 2px;" href="/page3">Page 3</a>
 </div>
-

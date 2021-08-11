@@ -1,17 +1,3 @@
-<script>
-  import Counter from "$lib/Counter.svelte";
-</script>
-
-<svelte:head>
-  <title>Svelte Template</title>
-</svelte:head>
-
-<main>
-  <h1 class="text-primary">Hello world!</h1>
-  <Counter />
-  <p>Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte apps. <i class="fas fa-heart fa-fw"></i></p>
-</main>
-
 <style lang="scss">
   main {
     text-align: center;
@@ -44,3 +30,20 @@
     }
   }
 </style>
+
+<svelte:head>
+  <title>Svelte Template</title>
+</svelte:head>
+
+<main>
+  <h1 class="text-primary">Hello world!</h1>
+  <Counter />
+  <p>
+    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build
+    Svelte apps. <i class="fas fa-heart fa-fw"></i>
+  </p>
+</main>
+
+<script>
+  import Counter from "$lib/Counter.svelte";
+</script>

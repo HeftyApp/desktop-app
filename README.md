@@ -7,7 +7,8 @@
   A minimal project template for Electron and SvelteKit configured with <a href="https://www.npmjs.com/package/@sveltejs/adapter-static">adapter-static</a>.
 </p>
 
-## Screenshot 
+## Screenshot
+
 ![Screenshot](https://github.com/Dax89/electron-sveltekit/blob/master/screenshot.png)
 
 ## Installation
@@ -17,6 +18,7 @@ npx degit Dax89/electron-sveltekit
 ```
 
 ## Commands
+
 - `npm run dev`: Runs SvelteKit in dev mode
 - `npm run start`: Runs SvelteKit in production mode
 - `npm run electron`: Runs SvelteKit with electron in dev mode
